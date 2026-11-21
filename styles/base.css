@@ -1,0 +1,48 @@
+/* ============================================================
+   BASE
+   Reset-ish, page shell, viewport frame, a11y helper.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: var(--c-void);
+  color: var(--c-plastic);
+  font-family: ui-monospace, "Cascadia Mono", "Courier New", monospace;
+  overflow: hidden;          /* one screen, no scrolling */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* The thin purple line around the viewport. Drawn as a fixed overlay so it
+   never affects layout and never scrolls away. */
+.viewport-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  border: var(--frame-w) solid var(--c-purple);
+  pointer-events: none;
+}
+
+/* Visible to screen readers only — the page has no visible text yet. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

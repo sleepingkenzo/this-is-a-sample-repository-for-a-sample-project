@@ -1,0 +1,66 @@
+/* ============================================================
+   TOKENS
+   Colors + the one scale unit the whole scene is built from.
+   ============================================================ */
+
+:root {
+  /* ── colors ─────────────────────────────────────────────── */
+  --c-void:           #000000;   /* background: just black */
+  --c-outline:        #16130f;   /* the chunky dark outline on everything */
+  --c-purple:         #8a2be2;   /* the viewport frame */
+
+  /* beige-gray computer plastic */
+  --c-plastic:        #d5d1c6;
+  --c-plastic-shade:  #b4af9f;
+  --c-plastic-deep:   #979282;
+
+  /* the screen */
+  --c-screen:         #57c8f7;
+  --c-screen-glow:    rgba(87, 200, 247, 0.28);
+
+  /* small parts */
+  --c-led:            #7bd66a;
+  --c-cord:           #171512;
+
+  /* wood */
+  --c-wood:           #c08d55;
+  --c-wood-light:     #d29e66;
+  --c-wood-grain:     #8f5f31;
+  --c-wood-seam:      #74491f;
+
+  /* desk props: cactus + pot */
+  --c-terracotta:      #c1683f;
+  --c-terracotta-deep: #a3502e;
+  --c-cactus:           #6fae5c;
+  --c-cactus-deep:      #558a46;
+
+  /* ── scale ──────────────────────────────────────────────── */
+  /* Every size in the scene is `calc(var(--u) * n)`, so the whole
+     composition scales as one object. Bounded by width AND height
+     so nothing overflows on short or narrow viewports. */
+  --u: clamp(3.6px, min(1.45vw, 1.02vh), 8px);
+
+  /* ── geometry ───────────────────────────────────────────── */
+  --desk-h:        clamp(120px, 30vh, 340px);
+  --edge:          calc(var(--u) * 0.7);   /* outline thickness */
+  --wire:          calc(var(--u) * 0.55);  /* keyboard cord thickness */
+  --frame-w:       2px;                    /* purple viewport frame */
+
+  --monitor-w:     calc(var(--u) * 62);
+  --monitor-h:     calc(var(--u) * 51);
+  --screen-h:      calc(var(--u) * 36);
+
+  --keyboard-w:    min(90vw, calc(var(--u) * 100));
+  --keyboard-h:    calc(var(--u) * 30);
+  --keyboard-lift: calc(var(--u) * 1);     /* how far up the desk it sits */
+  --keyboard-persp: calc(var(--u) * 115);  /* perspective distance for the tilt */
+  --keyboard-tilt: 56deg;                  /* how far the deck leans back */
+}
+
+/* Tall, narrow screens: the monitor is already width-capped, so give the desk
+   more room instead — it lifts the whole setup and tightens the composition. */
+@media (max-aspect-ratio: 3 / 4) {
+  :root {
+    --desk-h: clamp(150px, 34vh, 340px);
+  }
+}

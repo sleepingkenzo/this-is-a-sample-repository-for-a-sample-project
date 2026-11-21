@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retro Computer Portfolio</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+    }
+
+    body {
+        font-family: monospace;
+    }
+
+    .scene-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .scene-svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .screen-overlay {
+        position: absolute;
+        pointer-events: auto;
+        left: 37.7%;
+        top: 13.3%;
+        width: 24%;
+        height: 35%;
+        background: transparent;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="scene-container">
+
+<svg
+    class="scene-svg"
+    viewBox="0 0 1334 735"
+    preserveAspectRatio="xMidYMid slice"
+    xmlns="http://www.w3.org/2000/svg"
+>
+
+<defs>
+
+    <!-- BACKGROUND GLOW -->
+    <radialGradient id="ambientGlow" cx="50%" cy="38%" r="58%">
+        <stop offset="0%" stop-color="#142c30" stop-opacity=".75"/>
+        <stop offset="35%" stop-color="#091b1f" stop-opacity=".50"/>
+        <stop offset="70%" stop-color="#020708" stop-opacity=".15"/>
+        <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- DESK GRADIENTS -->
+    <linearGradient id="deskTop" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#7a7065"/>
+        <stop offset="30%" stop-color="#8c8074"/>
+        <stop offset="65%" stop-color="#766c61"/>
+        <stop offset="100%" stop-color="#524a41"/>
+    </linearGradient>
+
+    <radialGradient id="deskGlow" cx="50%" cy="40%" r="48%">
+        <stop offset="0%" stop-color="#a39688" stop-opacity=".40"/>
+        <stop offset="55%" stop-color="#7a7065" stop-opacity=".12"/>
+        <stop offset="100%" stop-color="#3d3730" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- MONITOR GRADIENTS -->
+    <linearGradient id="monitorBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#eae5db"/>
+        <stop offset="45%" stop-color="#ded8cc"/>
+        <stop offset="100%" stop-color="#c1bab0"/>
+    </linearGradient>
+
+    <linearGradient id="monitorBezel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#c5beb3"/>
+        <stop offset="100%" stop-color="#aba498"/>
+    </linearGradient>
+
+    <linearGradient id="screenBlue" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#73dcff"/>
+        <stop offset="45%" stop-color="#64d0fe"/>
+        <stop offset="100%" stop-color="#4dbbee"/>
+    </linearGradient>
+
+    <linearGradient id="monitorBottom" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#c8c2b7"/>
+        <stop offset="100%" stop-color="#9a948a"/>
+    </linearGradient>
+
+    <linearGradient id="standBase" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b5aea4"/>
+        <stop offset="60%" stop-color="#948d83"/>
+        <stop offset="100%" stop-color="#6a655d"/>
+    </linearGradient>
+
+    <!-- PERIPHERALS GRADIENTS -->
+    <linearGradient id="fanBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b0b5b2"/>
+        <stop offset="100%" stop-color="#707673"/>
+    </linearGradient>
+
+    <linearGradient id="fanBlade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d4d7d4"/>
+        <stop offset="100%" stop-color="#8a908d"/>
+    </linearGradient>
+
+    <linearGradient id="lampMetal" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#cfcbc2"/>
+        <stop offset="50%" stop-color="#9f9b93"/>
+        <stop offset="100%" stop-color="#6b6862"/>
+    </linearGradient>
+
+    <linearGradient id="lampShade" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d2cec4"/>
+        <stop offset="100%" stop-color="#88847c"/>
+    </linearGradient>
+
+    <linearGradient id="pot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#cb8866"/>
+        <stop offset="100%" stop-color="#8f5742"/>
+    </linearGradient>
+
+    <linearGradient id="cactus" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#76ad67"/>
+        <stop offset="100%" stop-color="#467848"/>
+    </linearGradient>
+
+    <!-- KEYBOARD GRADIENTS -->
+    <linearGradient id="keyboardBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#ded9cf"/>
+        <stop offset="55%" stop-color="#c8c2b7"/>
+        <stop offset="100%" stop-color="#9f998f"/>
+    </linearGradient>
+
+    <linearGradient id="keyboardBevel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#948f86"/>
+        <stop offset="100%" stop-color="#615d56"/>
+    </linearGradient>
+
+    <linearGradient id="keyTop" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#f2eee6"/>
+        <stop offset="50%" stop-color="#e4e0d7"/>
+        <stop offset="100%" stop-color="#cbcfc3"/>
+    </linearGradient>
+
+    <linearGradient id="keySide" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#a49f96"/>
+        <stop offset="100%" stop-color="#746f67"/>
+    </linearGradient>
+
+    <!-- SHADOW FILTERS -->
+    <filter id="softShadow" x="-50%" y="-100%" width="200%" height="300%">
+        <feGaussianBlur stdDeviation="12"/>
+    </filter>
+
+    <filter id="smallShadow" x="-50%" y="-100%" width="200%" height="300%">
+        <feGaussianBlur stdDeviation="5"/>
+    </filter>
+
+</defs>
+
+
+<!-- ========================================================= -->
+<!-- BACKGROUND -->
+<!-- ========================================================= -->
+
+<rect width="1334" height="735" fill="#000000"/>
+<rect width="1334" height="735" fill="url(#ambientGlow)"/>
+
+
+<!-- ========================================================= -->
+<!-- DESK TOP -->
+<!-- ========================================================= -->
+
+<path
+    d="M0 545
+       L305 408
+       L1029 408
+       L1334 545
+       L1334 735
+       L0 735 Z"
+    fill="url(#deskTop)"
+    stroke="#262420"
+    stroke-width="1.5"
+/>
+
+<path
+    d="M0 545 L305 408 L1029 408 L1334 545 L1334 735 L0 735 Z"
+    fill="url(#deskGlow)"
+/>
+
+<!-- rear edge shadow -->
+<path
+    d="M0 545 L305 408 L1029 408 L1334 545
+       L1334 555
+       L1027 416
+       L307 416
+       L0 555 Z"
+    fill="#1e1c19"
+    opacity=".48"
+/>
+
+
+<!-- ========================================================= -->
+<!-- OBJECT CONTACT SHADOWS -->
+<!-- ========================================================= -->
+
+<!-- Monitor shadow -->
+<ellipse
+    cx="667"
+    cy="428"
+    rx="195"
+    ry="16"
+    fill="#161412"
+    opacity=".58"
+    filter="url(#softShadow)"
+/>
+
+<!-- Fan shadow -->
+<ellipse
+    cx="388"
+    cy="442"
+    rx="56"
+    ry="9"
+    fill="#161412"
+    opacity=".50"
+    filter="url(#smallShadow)"
+/>
+
+<!-- Lamp shadow -->
+<ellipse
+    cx="945"
+    cy="432"
+    rx="46"
+    ry="8"
+    fill="#161412"
+    opacity=".46"
+    filter="url(#smallShadow)"
+/>
+
+<!-- Cactus shadow -->
+<ellipse
+    cx="1018"
+    cy="455"
+    rx="42"
+    ry="8"
+    fill="#161412"
+    opacity=".50"
+    filter="url(#smallShadow)"
+/>
+
+
+<!-- ========================================================= -->
+<!-- MONITOR -->
+<!-- ========================================================= -->
+
+<g id="monitor-group">
+
+    <!-- stand base -->
+    <path
+        d="
+            M558 448
+            L776 448
+            L764 461
+            L570 461 Z"
+        fill="url(#standBase)"
+        stroke="#272522"
+        stroke-width="1.6"
+    />
+    <path
+        d="M561 449 L773 449"
+        stroke="#ded9ce"
+        stroke-width="1.2"
+        opacity=".6"
+    />
+
+    <!-- stand neck -->
+    <path
+        d="
+            M606 412
+            L728 412
+            L736 448
+            L598 448 Z"
+        fill="#8a847b"
+        stroke="#272522"
+        stroke-width="1.6"
+    />
+
+    <path
+        d="
+            M611 414
+            L723 414
+            L729 442
+            Q667 449 605 442 Z"
+        fill="#a7a196"
+        opacity=".45"
+    />
+
+    <!-- rear monitor shadow box -->
+    <rect
+        x="456"
+        y="60"
+        width="422"
+        height="356"
+        rx="16"
+        fill="#121110"
+        opacity=".7"
+    />
+
+    <!-- main CRT shell -->
+    <path
+        d="
+            M475 61
+            Q460 61 458 75
+            L458 387
+            Q460 401 475 403
+            L859 403
+            Q874 401 876 387
+            L876 75
+            Q874 61 859 61
+            Z"
+        fill="url(#monitorBody)"
+        stroke="#282623"
+        stroke-width="2"
+    />
+
+    <!-- shell upper highlight -->
+    <path
+        d="
+            M476 65
+            Q464 65 463 77
+            L463 383
+            Q464 395 476 397
+            L858 397
+            Q870 395 871 383
+            L871 77
+            Q870 65 858 65
+            Z"
+        fill="none"
+        stroke="#f7f5ed"
+        stroke-width="1.8"
+        opacity=".55"
+    />
+
+    <!-- inner CRT bezel step -->
+    <path
+        d="
+            M491 88
+            Q488 84 496 84
+            L838 84
+            Q846 84 843 88
+            L843 355
+            Q844 363 836 365
+            L498 365
+            Q490 363 491 355
+            Z"
+        fill="url(#monitorBezel)"
+        stroke="#524f48"
+        stroke-width="1.5"
+    />
+
+    <!-- CRT dark inner shadow rim -->
+    <path
+        d="
+            M499 94
+            Q497 90 504 90
+            L830 90
+            Q837 90 835 94
+            L835 349
+            Q836 357 829 359
+            L505 359
+            Q498 357 499 349
+            Z"
+        fill="#1e201f"
+        opacity=".85"
+    />
+
+    <!-- CRT Screen -->
+    <path
+        d="
+            M504 102
+            Q503 96 512 95
+            L822 95
+            Q831 96 830 102
+            L830 342
+            Q831 350 822 352
+            L512 352
+            Q503 350 504 342
+            Z"
+        fill="url(#screenBlue)"
+        stroke="#1a1c1c"
+        stroke-width="2"
+    />
+
+    <!-- Screen upper shine reflection -->
+    <path
+        d="
+            M510 101
+            Q510 98 518 97
+            L816 97
+            Q824 98 824 101
+            L824 116
+            Q667 101 510 117 Z"
+        fill="#b8ebff"
+        opacity=".22"
+    />
+
+    <!-- Screen bottom curve shade -->
+    <path
+        d="
+            M504 332
+            Q667 348 830 332
+            L830 342
+            Q831 350 822 352
+            L512 352
+            Q503 350 504 342 Z"
+        fill="#329ac9"
+        opacity=".25"
+    />
+
+    <!-- monitor bottom chin seam & panel -->
+    <path
+        d="
+            M464 403
+            L870 403
+            L865 413
+            L469 413 Z"
+        fill="url(#monitorBottom)"
+        stroke="#282623"
+        stroke-width="1.4"
+    />
+
+    <line x1="465" y1="403" x2="869" y2="403" stroke="#48453f" stroke-width="1.2"/>
+
+    <!-- small indicator / power button on lower right -->
+    <circle
+        cx="772"
+        cy="408"
+        r="2.2"
+        fill="#262523"
+    />
+
+    <rect
+        x="782"
+        y="405"
+        width="18"
+        height="7"
+        rx="1"
+        fill="#DC143C"
+        fill="#b2ada2"
+        stroke="#3c3a35"
+        stroke-width="1"
+    />
+
+    <rect
+        x="784"
+        y="406.5"
+        width="14"
+        height="4"
+        fill="#DC143C"
+        fill="#ded9ce"
+    />
+
+</g>
+
+
+<!-- ========================================================= -->
+<!-- KEYBOARD CABLE -->
+<!-- ========================================================= -->
+
+<path
+    d="
+        M 666 504
+        C 668 472, 785 490, 804 460
+        C 818 438, 755 433, 742 447
+    "
+    fill="none"
+    stroke="#4c4842"
+    stroke-width="3.5"
+    stroke-linecap="round"
+/>
+<path
+    d="
+        M 666 504
+        C 668 472, 785 490, 804 460
+        C 818 438, 755 433, 742 447
+    "
+    fill="none"
+    stroke="#837d74"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    opacity=".65"
+/>
+
+
+<!-- ========================================================= -->
+<!-- FAN -->
+<!-- ========================================================= -->
+
+<g id="fan-group">
+
+    <!-- base -->
+    <ellipse
+        cx="388"
+        cy="442"
+        rx="46"
+        ry="9"
+        fill="url(#fanBody)"
+        stroke="#272927"
+        stroke-width="1.4"
+    />
+
+    <path
+        d="
+            M364 440
+            Q388 433 412 440
+            L408 444
+            L368 444 Z"
+        fill="#c8cac5"
+        opacity=".65"
+    />
+
+    <!-- neck -->
+    <path
+        d="
+            M380 435
+            L381 390
+            L395 390
+            L396 435 Z"
+        fill="url(#fanBody)"
+        stroke="#272927"
+        stroke-width="1.4"
+    />
+
+    <!-- fan cage outer ring -->
+    <circle
+        cx="388"
+        cy="332"
+        r="63"
+        fill="none"
+        stroke="#1c1e1d"
+        stroke-width="2.5"
+    />
+
+    <!-- fan cage inner ring -->
+    <circle
+        cx="388"
+        cy="332"
+        r="58"
+        fill="none"
+        stroke="#848a85"
+        stroke-width="1.4"
+    />
+
+    <!-- 3 fan blades -->
+    <g fill="url(#fanBlade)" stroke="#272927" stroke-width="1.2">
+
+        <!-- top blade -->
+        <path
+         transform="translate(-8, 3)"
+            d="
+                M388 332
+                C380 316 374 290 383 274
+                C389 263 401 268 404 280
+                C408 295 400 316 392 332 Z"
+        />
+
+        <!-- right blade -->
+        <path
+            d="
+                M388 332
+                C404 327 428 320 440 329
+                C449 336 444 348 434 354
+                C419 362 400 350 388 338 Z"
+        />
+
+        <!-- left-down blade -->
+        <path
+         transform="translate(-2, -6)"
+            d="
+                M388 332
+                C386 349 380 372 365 381
+                C354 387 346 379 347 367
+                C349 352 369 337 388 332 Z"
+        />
+
+    </g>
+
+    <!-- cage cross wires -->
+    <path
+        d="M329 332 H447 M388 273 V391"
+        fill="none"
+        stroke="#6e7470"
+        stroke-width="1.2"
+        opacity=".85"
+    />
+
+    <!-- center hub -->
+    <circle
+        cx="388"
+        cy="332"
+        r="15"
+        fill="#a7aba5"
+        stroke="#272927"
+        stroke-width="1.4"
+    />
+
+    <circle
+        cx="388"
+        cy="332"
+        r="7.5"
+        fill="#5a5f5b"
+        stroke="#1c1e1d"
+        stroke-width="1"
+    />
+
+</g>
+
+
+<!-- ========================================================= -->
+<!-- LAMP -->
+<!-- ========================================================= -->
+
+<g id="lamp-group">
+
+    <!-- base -->
+    <ellipse
+        cx="945"
+        cy="428"
+        rx="36"
+        ry="8"
+        fill="url(#lampMetal)"
+        stroke="#272624"
+        stroke-width="1.3"
+    />
+
+    <ellipse
+        cx="945"
+        cy="426"
+        rx="26"
+        ry="4.5"
+        fill="#dedad0"
+        opacity=".4"
+    />
+
+    <!-- neck -->
+    <path
+        d="
+            M954 422
+            C958 392 964 365 968 340
+            C971 318 974 298 969 282
+            C966 270 957 262 949 256"
+        fill="none"
+        stroke="#52504c"
+        stroke-width="8"
+        stroke-linecap="round"
+    />
+
+    <path
+        d="
+            M953 420
+            C957 391 963 365 967 340
+            C970 318 973 299 968 283
+            C965 271 956 263 949 258"
+        fill="none"
+        stroke="#aba69c"
+        stroke-width="4"
+        stroke-linecap="round"
+        opacity=".6"
+    />
+
+    <!-- neck joint -->
+    <!-- <circle
+        cx="973"
+        cy="312"
+        r="6.5"
+        fill="#6c6861"
+        stroke="#272624"
+        stroke-width="1.2"
+    /> -->
+
+    <!-- lamp shade body -->
+    <path
+        d="
+            M913 249
+            Q932 244 954 251
+            L966 280
+            Q966 286 959 289
+            Q933 297 907 286
+            Q903 283 905 277 Z"
+        fill="url(#lampShade)"
+        stroke="#272624"
+        stroke-width="1.6"
+    />
+
+    <!-- shade top cap -->
+    <path
+        d="
+            M913 249
+            Q932 244 954 251
+            L961 257
+            Q939 263 911 258 Z"
+        fill="#dedad0"
+        opacity=".75"
+    />
+
+    <!-- bulb inner glow & bulb -->
+    <ellipse
+        cx="936"
+        cy="281"
+        rx="14"
+        ry="8.5"
+        fill="#fcf0c0"
+        stroke="#33302a"
+        stroke-width="1"
+    />
+
+    <ellipse
+        cx="936"
+        cy="279"
+        rx="8.5"
+        ry="5"
+        fill="#ffffff"
+        opacity=".85"
+    />
+
+</g>
+
+
+<!-- ========================================================= -->
+<!-- CACTUS -->
+<!-- ========================================================= -->
+
+<g id="cactus-group">
+
+    <!-- pot shadow -->
+    <ellipse
+        cx="1017"
+        cy="455"
+        rx="36"
+        ry="7"
+        fill="#231915"
+        opacity=".48"
+    />
+
+    <!-- pot body -->
+    <path
+        d="
+            M988 400
+            L1047 400
+            L1040 451
+            Q1017 457 994 451 Z"
+        fill="url(#pot)"
+        stroke="#352019"
+        stroke-width="1.5"
+    />
+
+    <!-- pot rim -->
+    <path
+        d="
+            M984 394
+            Q1018 389 1051 395
+            L1047 407
+            Q1018 413 988 406 Z"
+        fill="#d2906e"
+        stroke="#3c241d"
+        stroke-width="1.3"
+    />
+
+    <!-- soil -->
+    <!-- <ellipse
+        cx="1017"
+        cy="397"
+        rx="29"
+        ry="5.5"
+        fill="#523227"
+        opacity=".75"
+    /> -->
+
+    <!-- cactus main body -->
+    <path
+        d="
+            M1006 394
+            L1006 352
+            C1006 340 1011 329 1018 329
+            C1025 329 1030 340 1030 352
+            L1030 394
+            Z"
+        fill="url(#cactus)"
+        stroke="#1e321f"
+        stroke-width="1.2"
+    />
+
+    <!-- left arm (lower) -->
+    <!-- <path
+        d="
+            M1007 375
+            L1007 363
+            C1007 356 1002 352 997 353
+            C992 354 990 359 990 365
+            L990 371
+            L985 371
+            L985 363
+            C985 355 989 349 996 348
+            C1004 347 1010 352 1010 361
+            L1010 375 Z"
+        fill="#5d9354"
+        stroke="#1e321f"
+        stroke-width="1"
+    /> -->
+
+    <!-- right arm (higher) -->
+    <!-- <path
+        d="
+            M1028 368
+            L1028 349
+            C1028 342 1032 337 1037 338
+            C1043 339 1045 344 1045 350
+            L1045 357
+            L1050 357
+            L1050 348
+            C1050 340 1045 334 1038 333
+            C1030 332 1024 338 1024 347
+            L1024 368 Z"
+        fill="#679b5c"
+        stroke="#1e321f"
+        stroke-width="1"
+    /> -->
+
+    <!-- cactus highlights & ribs -->
+    <path
+        d="M1013 336 L1013 388"
+        stroke="#9cd080"
+        stroke-width="1.8"
+        opacity=".5"
+    />
+    <path
+        d="M1023 336 L1023 388"
+        stroke="#355a33"
+        stroke-width="1.2"
+        opacity=".5"
+    />
+
+    <!-- spines / dots -->
+    <g fill="#e3ebb8" opacity=".8">
+        <circle cx="1018" cy="341" r="1"/>
+        <circle cx="1012" cy="352" r="1"/>
+        <circle cx="1024" cy="360" r="1"/>
+        <circle cx="1013" cy="373" r="1"/>
+        <circle cx="1023" cy="382" r="1"/>
+        <!-- <circle cx="994" cy="358" r=".8"/>
+        <circle cx="994" cy="368" r=".8"/> -->
+        <!-- <circle cx="1039" cy="348" r=".8"/>
+        <circle cx="1039" cy="358" r=".8"/> -->
+    </g>
+
+</g>
+
+
+<!-- ========================================================= -->
+<!-- KEYBOARD PLATFORM & CHASSIS -->
+<!-- ========================================================= -->
+
+<!-- Keyboard Base Shadow -->
+<path
+    d="
+        M 256 502
+        L 1078 502
+        L 1284 690
+        L 50 690 Z"
+    fill="#121110"
+    opacity=".55"
+    filter="url(#softShadow)"
+/>
+
+<!-- Main Keyboard Upper Deck (Beige Chassis) -->
+<path
+    d="
+        M 264 504
+        Q 268 501 276 501
+        L 1058 501
+        Q 1066 501 1070 504
+        L 1276 685
+        Q 1282 690 1275 693
+        L 59 693
+        Q 52 690 58 685 Z"
+    fill="url(#keyboardBody)"
+    stroke="#22211e"
+    stroke-width="2"
+    stroke-linejoin="round"
+/>
+
+<!-- Keyboard Recessed Tray Background -->
+<path
+    d="
+        M 270 507
+        L 1064 507
+        L 1269 681
+        L 65 681 Z"
+    fill="#6b665e"
+    stroke="#2a2926"
+    stroke-width="1.2"
+    opacity=".95"
+/>
+
+<!-- Keyboard Front Lip / Bevel -->
+<path
+    d="
+        M 59 693
+        L 1275 693
+        L 1269 718
+        Q 1267 724 1259 725
+        L 75 725
+        Q 67 724 65 718 Z"
+    fill="url(#keyboardBevel)"
+    stroke="#22211e"
+    stroke-width="2"
+    stroke-linejoin="round"
+/>
+
+<!-- Front Bevel Top Highlight Line -->
+<path
+    d="M 64 694 L 1270 694"
+    stroke="#ded9ce"
+    stroke-width="1.5"
+    opacity=".45"
+/>
+
+
+<!-- ========================================================= -->
+<!-- KEYBOARD KEYS CONTAINER -->
+<!-- ========================================================= -->
+
+<g id="keyboard-keys"></g>
+
+</svg>
+
+<div class="screen-overlay"></div>
+
+</div>
+
+
+<script>
+const svgNS = "http://www.w3.org/2000/svg";
+const keyboard = document.getElementById("keyboard-keys");
+
+/*
+    PHYSICALLY ACCURATE KEYBOARD PERSPECTIVE ENGINE
+    ------------------------------------------------
+    Camera Vanishing Point: (VP_X, VP_Y) = (667, 160)
+    Keyboard depth plane: v from 0.0 (rear) to 1.0 (front)
+    All keys, caps, and extrusion share this EXACT geometry.
+*/
+
+const VP_X = 667;
+const VP_Y = 160;
+
+const Y_BACK = 512;
+const Y_FRONT = 673;
+
+const S_BACK = 1.0;
+const S_FRONT = 1.54;
+
+const TOTAL_UNITS = 23.4;
+const U_CENTER = TOTAL_UNITS / 2; // 11.7
+const BASE_UNIT_PX = 33.6;
+
+function getScale(v) {
+    return 1.0 / ((1.0 - v) / S_BACK + v / S_FRONT);
+}
+
+function projectY(v) {
+    const s = getScale(v);
+    return Y_BACK + (Y_FRONT - Y_BACK) * ((s - S_BACK) / (S_FRONT - S_BACK));
+}
+
+function projectX(u, v) {
+    const s = getScale(v);
+    return VP_X + (u - U_CENTER) * BASE_UNIT_PX * s;
+}
+
+/*
+    Renders an individual 3D retro keycap:
+    - Side skirt (when facing camera)
+    - Front face extrusion (darker side tone)
+    - Top face (light off-white with stroke and subtle highlight)
+*/
+function createKey(u, widthUnits, v1, v2, depthPx = 4.5) {
+    const keyGroup = document.createElementNS(svgNS, "g");
+
+    // Margins inside the key cell to give clean, non-touching gaps
+    const uMargin = 0.08;
+    const ku1 = u + uMargin;
+    const ku2 = u + widthUnits - uMargin;
+
+    // Top face corners
+    const x1_top = projectX(ku1, v1);
+    const x2_top = projectX(ku2, v1);
+    const y_top  = projectY(v1);
+
+    const x1_bot = projectX(ku1, v2);
+    const x2_bot = projectX(ku2, v2);
+    const y_bot  = projectY(v2);
+
+    // Front extrusion bottom corners
+    const s2 = getScale(v2);
+    const effectiveDepth = depthPx * s2;
+    const y_ext = y_bot + effectiveDepth;
+
+    // Side face extrusion if key is offset from camera center
+    const uMid = u + widthUnits / 2;
+    if (uMid < U_CENTER - 0.4) {
+        // Key is on the left: right side of keycap faces camera
+        const sideFace = document.createElementNS(svgNS, "path");
+        sideFace.setAttribute(
+            "d",
+            `M ${x2_top} ${y_top}
+             L ${x2_bot} ${y_bot}
+             L ${x2_bot} ${y_ext}
+             L ${x2_top} ${y_top + effectiveDepth * 0.75} Z`
+        );
+        sideFace.setAttribute("fill", "url(#keySide)");
+        sideFace.setAttribute("stroke", "#282724");
+        sideFace.setAttribute("stroke-width", "0.8");
+        sideFace.setAttribute("stroke-linejoin", "round");
+        keyGroup.appendChild(sideFace);
+    } else if (uMid > U_CENTER + 0.4) {
+        // Key is on the right: left side of keycap faces camera
+        const sideFace = document.createElementNS(svgNS, "path");
+        sideFace.setAttribute(
+            "d",
+            `M ${x1_top} ${y_top}
+             L ${x1_bot} ${y_bot}
+             L ${x1_bot} ${y_ext}
+             L ${x1_top} ${y_top + effectiveDepth * 0.75} Z`
+        );
+        sideFace.setAttribute("fill", "url(#keySide)");
+        sideFace.setAttribute("stroke", "#282724");
+        sideFace.setAttribute("stroke-width", "0.8");
+        sideFace.setAttribute("stroke-linejoin", "round");
+        keyGroup.appendChild(sideFace);
+    }
+
+    // Front face
+    const frontFace = document.createElementNS(svgNS, "path");
+    frontFace.setAttribute(
+        "d",
+        `M ${x1_bot} ${y_bot}
+         L ${x2_bot} ${y_bot}
+         L ${x2_bot} ${y_ext}
+         L ${x1_bot} ${y_ext} Z`
+    );
+    frontFace.setAttribute("fill", "url(#keySide)");
+    frontFace.setAttribute("stroke", "#282724");
+    frontFace.setAttribute("stroke-width", "0.9");
+    frontFace.setAttribute("stroke-linejoin", "round");
+    keyGroup.appendChild(frontFace);
+
+    // Top face
+    const topFace = document.createElementNS(svgNS, "path");
+    topFace.setAttribute(
+        "d",
+        `M ${x1_top} ${y_top}
+         L ${x2_top} ${y_top}
+         L ${x2_bot} ${y_bot}
+         L ${x1_bot} ${y_bot} Z`
+    );
+    topFace.setAttribute("fill", "url(#keyTop)");
+    topFace.setAttribute("stroke", "#2d2c29");
+    topFace.setAttribute("stroke-width", "1");
+    topFace.setAttribute("stroke-linejoin", "round");
+    keyGroup.appendChild(topFace);
+
+    // Top face highlight line
+    const highlight = document.createElementNS(svgNS, "line");
+    highlight.setAttribute("x1", x1_top + 1);
+    highlight.setAttribute("y1", y_top + 0.8);
+    highlight.setAttribute("x2", x2_top - 1);
+    highlight.setAttribute("y2", y_top + 0.8);
+    highlight.setAttribute("stroke", "#ffffff");
+    highlight.setAttribute("stroke-width", "0.8");
+    highlight.setAttribute("opacity", "0.6");
+    keyGroup.appendChild(highlight);
+
+    return keyGroup;
+}
+
+/*
+    KEYBOARD LAYOUT SPECIFICATION
+    -----------------------------
+    Matches the retro full keyboard from reference image:
+    - Alpha block: 15.0 units wide
+    - Nav cluster: 3.0 units wide (gap 0.6)
+    - Numpad: 4.0 units wide (gap 0.6)
+*/
+
+const rowDefs = [
+    // ROW 0: Function Row (Esc, F-keys, Nav top, Numpad top)
+    {
+        v1: 0.02,
+        v2: 0.12,
+        depth: 3.2,
+        keys: [
+            // Esc
+            { u: 0, w: 1.0 },
+            // F1 - F4
+            { u: 1.5, w: 1.0 }, { u: 2.5, w: 1.0 }, { u: 3.5, w: 1.0 }, { u: 4.5, w: 1.0 },
+            // F5 - F8
+            { u: 5.9, w: 1.0 }, { u: 6.9, w: 1.0 }, { u: 7.9, w: 1.0 }, { u: 8.9, w: 1.0 },
+            // F9 - F12
+            { u: 10.3, w: 1.0 }, { u: 11.3, w: 1.0 }, { u: 12.3, w: 1.0 }, { u: 13.3, w: 1.0 },
+            // Nav: Print / Scroll / Pause
+            { u: 15.6, w: 1.0 }, { u: 16.6, w: 1.0 }, { u: 17.6, w: 1.0 },
+            // Numpad: NumLock / * -
+            { u: 19.2, w: 1.0 }, { u: 20.2, w: 1.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    },
+
+    // ROW 1: Number Row
+    {
+        v1: 0.18,
+        v2: 0.31,
+        depth: 3.8,
+        keys: [
+            // `~ and 1-0 - =
+            { u: 0, w: 1.0 }, { u: 1.0, w: 1.0 }, { u: 2.0, w: 1.0 }, { u: 3.0, w: 1.0 }, { u: 4.0, w: 1.0 },
+            { u: 5.0, w: 1.0 }, { u: 6.0, w: 1.0 }, { u: 7.0, w: 1.0 }, { u: 8.0, w: 1.0 }, { u: 9.0, w: 1.0 },
+            { u: 10.0, w: 1.0 }, { u: 11.0, w: 1.0 }, { u: 12.0, w: 1.0 },
+            // Backspace
+            { u: 13.0, w: 2.0 },
+            // Nav: Insert / Home / PgUp
+            { u: 15.6, w: 1.0 }, { u: 16.6, w: 1.0 }, { u: 17.6, w: 1.0 },
+            // Numpad: 7 8 9 +
+            { u: 19.2, w: 1.0 }, { u: 20.2, w: 1.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    },
+
+    // ROW 2: QWERTY Row
+    {
+        v1: 0.34,
+        v2: 0.47,
+        depth: 4.2,
+        keys: [
+            // Tab
+            { u: 0, w: 1.5 },
+            // Q W E R T Y U I O P [ ] \
+            { u: 1.5, w: 1.0 }, { u: 2.5, w: 1.0 }, { u: 3.5, w: 1.0 }, { u: 4.5, w: 1.0 }, { u: 5.5, w: 1.0 },
+            { u: 6.5, w: 1.0 }, { u: 7.5, w: 1.0 }, { u: 8.5, w: 1.0 }, { u: 9.5, w: 1.0 }, { u: 10.5, w: 1.0 },
+            { u: 11.5, w: 1.0 }, { u: 12.5, w: 1.0 }, { u: 13.5, w: 1.5 },
+            // Nav: Delete / End / PgDn
+            { u: 15.6, w: 1.0 }, { u: 16.6, w: 1.0 }, { u: 17.6, w: 1.0 },
+            // Numpad: 4 5 6 +
+            { u: 19.2, w: 1.0 }, { u: 20.2, w: 1.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    },
+
+    // ROW 3: Home Row
+    {
+        v1: 0.50,
+        v2: 0.63,
+        depth: 4.5,
+        keys: [
+            // Caps Lock
+            { u: 0, w: 1.75 },
+            // A S D F G H J K L ; '
+            { u: 1.75, w: 1.0 }, { u: 2.75, w: 1.0 }, { u: 3.75, w: 1.0 }, { u: 4.75, w: 1.0 }, { u: 5.75, w: 1.0 },
+            { u: 6.75, w: 1.0 }, { u: 7.75, w: 1.0 }, { u: 8.75, w: 1.0 }, { u: 9.75, w: 1.0 }, { u: 10.75, w: 1.0 },
+            { u: 11.75, w: 1.0 },
+            // Enter
+            { u: 12.75, w: 2.25 },
+            // Numpad: 1 2 3 Enter
+            { u: 19.2, w: 1.0 }, { u: 20.2, w: 1.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    },
+
+    // ROW 4: Shift Row
+    {
+        v1: 0.66,
+        v2: 0.80,
+        depth: 4.8,
+        keys: [
+            // Left Shift
+            { u: 0, w: 2.25 },
+            // Z X C V B N M , . /
+            { u: 2.25, w: 1.0 }, { u: 3.25, w: 1.0 }, { u: 4.25, w: 1.0 }, { u: 5.25, w: 1.0 }, { u: 6.25, w: 1.0 },
+            { u: 7.25, w: 1.0 }, { u: 8.25, w: 1.0 }, { u: 9.25, w: 1.0 }, { u: 10.25, w: 1.0 }, { u: 11.25, w: 1.0 },
+            // Right Shift
+            { u: 12.25, w: 2.75 },
+            // Nav: Up Arrow (centered in nav column)
+            { u: 16.6, w: 1.0 },
+            // Numpad: 1 2 3 Enter
+            { u: 19.2, w: 1.0 }, { u: 20.2, w: 1.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    },
+
+    // ROW 5: Bottom / Spacebar Row
+    {
+        v1: 0.83,
+        v2: 0.98,
+        depth: 5.2,
+        keys: [
+            // Left modifiers
+            { u: 0, w: 1.4 }, { u: 1.4, w: 1.3 }, { u: 2.7, w: 1.3 },
+            // Spacebar
+            { u: 4.0, w: 6.7 },
+            // Right modifiers
+            { u: 10.7, w: 1.3 }, { u: 12.0, w: 1.3 }, { u: 13.3, w: 1.7 },
+            // Nav: Left / Down / Right
+            { u: 15.6, w: 1.0 }, { u: 16.6, w: 1.0 }, { u: 17.6, w: 1.0 },
+            // Numpad: 0 (wide 2u), . and Enter
+            { u: 19.2, w: 2.0 }, { u: 21.2, w: 1.0 }, { u: 22.2, w: 1.0 }
+        ]
+    }
+];
+
+// Render all keys from back to front (preserving painter's algorithm)
+rowDefs.forEach(row => {
+    row.keys.forEach(k => {
+        const v2 = k.v2_override !== undefined ? k.v2_override : row.v2;
+        const depth = k.depth_override !== undefined ? k.depth_override : row.depth;
+        const keyElement = createKey(k.u, k.w, row.v1, v2, depth);
+        keyboard.appendChild(keyElement);
+    });
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+/* ============================================================
+   SCENE
+   A desk, a monitor, a keyboard. Components in DOM order:
+   .scene > .desk / .computer (.monitor + .stand) / .keyboard
+   ============================================================ */
+
+.scene {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: var(--c-void);
+}
+
+
+/* ── DESK ─────────────────────────────────────────────────────
+   Wood is layered CSS gradients only — no images.
+   Layers, top to bottom:
+     1. plank seams      (dark groove + light lip, hard edges)
+     2. plank tone shift (off-period so planks don't look cloned)
+     3. coarse grain     (tilted 178deg so lines aren't parallel)
+     4. fine grain       (tilted 181deg, the other way)
+   .desk::before adds elliptical knot rings to break the rhythm.
+   ------------------------------------------------------------ */
+.desk {
+  --plank: calc(var(--u) * 8);
+  --seam: max(1px, calc(var(--u) * 0.16));
+
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 1;
+  height: var(--desk-h);
+  border-top: calc(var(--u) * 0.4) solid var(--c-outline);
+  background-color: var(--c-wood);
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0 calc(var(--plank) - var(--seam) * 2),
+      rgba(116, 73, 31, 0.7) calc(var(--plank) - var(--seam) * 2) calc(var(--plank) - var(--seam)),
+      rgba(255, 244, 226, 0.22) calc(var(--plank) - var(--seam)) var(--plank)
+    ),
+    repeating-linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.07) 0 calc(var(--plank) * 1.5),
+      rgba(255, 255, 255, 0.05) calc(var(--plank) * 1.5) calc(var(--plank) * 3.5)
+    ),
+    repeating-linear-gradient(
+      178deg,
+      transparent 0 3px,
+      rgba(143, 95, 49, 0.17) 3px 4px,
+      transparent 4px 9px,
+      rgba(143, 95, 49, 0.11) 9px 10px,
+      transparent 10px 17px
+    ),
+    repeating-linear-gradient(
+      181deg,
+      transparent 0 2px,
+      rgba(116, 73, 31, 0.11) 2px 2.5px,
+      transparent 2.5px 5px,
+      rgba(210, 158, 102, 0.13) 5px 5.5px,
+      transparent 5.5px 11px
+    );
+}
+
+.desk::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-radial-gradient(
+      ellipse calc(var(--u) * 26) calc(var(--u) * 6) at 21% 34%,
+      rgba(116, 73, 31, 0.10) 0 4px,
+      transparent 4px 13px
+    ),
+    repeating-radial-gradient(
+      ellipse calc(var(--u) * 20) calc(var(--u) * 5) at 76% 71%,
+      rgba(116, 73, 31, 0.09) 0 3px,
+      transparent 3px 11px
+    );
+}
+
+
+/* ── DESK PROPS ───────────────────────────────────────────────
+   A small fan on the left, a lamp + cactus on the right — pure
+   inline SVG using the same outline + flat-fill language as the
+   rest of the scene, sitting on the desk beside the monitor.
+   ------------------------------------------------------------ */
+.desk-props {
+  position: absolute;
+  bottom: var(--desk-h);
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  gap: calc(var(--u) * 3);
+  pointer-events: none;
+}
+
+.desk-props--left {
+  right: calc(50% + var(--monitor-w) / 2 + var(--u) * 5);
+}
+
+.desk-props--right {
+  left: calc(50% + var(--monitor-w) / 2 + var(--u) * 5);
+}
+
+.prop {
+  display: block;
+  overflow: visible;
+}
+
+.prop--fan    { width: calc(var(--u) * 13); height: calc(var(--u) * 18.5); }
+.prop--lamp   { width: calc(var(--u) * 12); height: calc(var(--u) * 18.5); }
+.prop--cactus { width: calc(var(--u) * 7.5); height: calc(var(--u) * 10.8); }
+
+/* Fan */
+.fan__base       { fill: var(--c-outline); }
+.fan__neck       { fill: var(--c-plastic-shade); stroke: var(--c-outline); stroke-width: 4; }
+.fan__guard-outer,
+.fan__guard-inner { fill: none; stroke: var(--c-outline); }
+.fan__guard-outer { stroke-width: 5; }
+.fan__guard-inner { stroke: var(--c-plastic-shade); stroke-width: 3; }
+.fan__spokes line { stroke: var(--c-plastic-shade); stroke-width: 3; }
+.fan__hub        { fill: var(--c-plastic-deep); stroke: var(--c-outline); stroke-width: 4; }
+
+/* Lamp */
+.lamp__base  { fill: var(--c-plastic); stroke: var(--c-outline); stroke-width: 4; }
+.lamp__arm   { stroke: var(--c-plastic-shade); stroke-width: 8; stroke-linecap: round; }
+.lamp__shade {
+  fill: var(--c-plastic-shade);
+  stroke: var(--c-outline);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+.lamp__joint { fill: var(--c-plastic-deep); stroke: var(--c-outline); stroke-width: 3; }
+
+/* Cactus */
+.cactus__pot,
+.cactus__pot-rim {
+  fill: var(--c-terracotta);
+  stroke: var(--c-outline);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+.cactus__body,
+.cactus__arm-left,
+.cactus__arm-right {
+  fill: var(--c-cactus);
+  stroke: var(--c-outline);
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+
+/* Below this width the props would collide with the wider keyboard/
+   monitor, so they step aside — the desk stays simple rather than
+   cramped. */
+@media (max-width: 1000px) {
+  .desk-props {
+    display: none;
+  }
+}
+
+
+/* ── COMPUTER ─────────────────────────────────────────────────
+   Bottom-anchored to the desk's top edge, horizontally centered.
+   ------------------------------------------------------------ */
+.computer {
+  position: absolute;
+  bottom: var(--desk-h);
+  left: 50%;
+  z-index: 3;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ── MONITOR ─────────────────────────────────────────────────── */
+.monitor {
+  display: flex;
+  flex-direction: column;
+  width: var(--monitor-w);
+  height: var(--monitor-h);
+  padding: calc(var(--u) * 4.5) calc(var(--u) * 6) 0;
+  border: var(--edge) solid var(--c-outline);
+  border-radius: calc(var(--u) * 2.6);
+  background-color: var(--c-plastic);
+  box-shadow:
+    inset 0 calc(var(--u) * 0.7) 0 rgba(255, 255, 255, 0.4),
+    inset 0 calc(var(--u) * -1) 0 var(--c-plastic-shade),
+    inset calc(var(--u) * -1) 0 0 var(--c-plastic-shade);
+}
+
+/* Recessed frame the tube sits in. */
+.monitor__bezel {
+  height: var(--screen-h);
+  padding: calc(var(--u) * 0.8);
+  border-radius: calc(var(--u) * 1.3);
+  background-color: var(--c-plastic-deep);
+  box-shadow: inset 0 0 0 calc(var(--u) * 0.22) rgba(0, 0, 0, 0.4);
+}
+
+/* The screen. Blank blue for now; desktop icons land in here later. */
+.monitor__screen {
+  height: 100%;
+  border-radius: calc(var(--u) * 0.7);
+  background-color: var(--c-screen);
+  /* faint CRT scanlines (static, not animated) */
+  background-image: repeating-linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0 1px,
+    rgba(0, 0, 0, 0.025) 1px 4px
+  );
+  box-shadow:
+    inset 0 0 0 max(1px, calc(var(--u) * 0.2)) rgba(0, 0, 0, 0.35),
+    0 0 calc(var(--u) * 2.5) rgba(87, 200, 247, 0.16);
+}
+
+/* Chin: power light and a few small buttons. */
+.monitor__chin {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 calc(var(--u) * 0.6);
+}
+
+.monitor__led {
+  width: calc(var(--u) * 1.5);
+  height: calc(var(--u) * 1.5);
+  border: max(1px, calc(var(--u) * 0.18)) solid var(--c-outline);
+  border-radius: 50%;
+  background-color: var(--c-led);
+}
+
+.monitor__buttons {
+  display: flex;
+  gap: calc(var(--u) * 1.1);
+  align-items: center;
+}
+
+.monitor__button {
+  width: calc(var(--u) * 3.2);
+  height: calc(var(--u) * 1.1);
+  border: max(1px, calc(var(--u) * 0.18)) solid var(--c-outline);
+  border-radius: calc(var(--u) * 0.4);
+  background-color: var(--c-plastic-shade);
+}
+
+.monitor__button--power {
+  width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  border-radius: calc(var(--u) * 0.5);
+}
+
+
+/* ── STAND ───────────────────────────────────────────────────── */
+.stand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stand__neck {
+  width: calc(var(--u) * 18);
+  height: calc(var(--u) * 6.5);
+  margin-top: calc(var(--edge) * -1);
+  border: var(--edge) solid var(--c-outline);
+  border-radius: 0 0 calc(var(--u) * 1) calc(var(--u) * 1);
+  background-color: var(--c-plastic-shade);
+}
+
+.stand__base {
+  width: calc(var(--u) * 30);
+  height: calc(var(--u) * 3.6);
+  margin-top: calc(var(--edge) * -1);
+  border: var(--edge) solid var(--c-outline);
+  border-radius: calc(var(--u) * 0.6) calc(var(--u) * 0.6) calc(var(--u) * 1.4) calc(var(--u) * 1.4);
+  background-color: var(--c-plastic);
+  box-shadow:
+    inset 0 calc(var(--u) * 0.5) 0 rgba(255, 255, 255, 0.35),
+    0 calc(var(--u) * 0.35) calc(var(--u) * 0.9) rgba(0, 0, 0, 0.45);
+}
+
+
+/* ── KEYBOARD ────────────────────────────────────────────────── */
+.keyboard {
+  position: absolute;
+  bottom: var(--keyboard-lift);
+  left: 50%;
+  z-index: 2;
+  width: var(--keyboard-w);
+  height: var(--keyboard-h);
+  padding: calc(var(--u) * 1.1);
+  border: var(--edge) solid var(--c-outline);
+  border-radius: calc(var(--u) * 1.2);
+  background-color: var(--c-plastic-deep);
+  box-shadow:
+    inset 0 calc(var(--u) * 0.5) 0 rgba(255, 255, 255, 0.22),
+    0 calc(var(--u) * 0.6) calc(var(--u) * 1.4) rgba(0, 0, 0, 0.5);
+
+  /* Real perspective: the deck is tilted back in 3D around its own front
+     (bottom) edge, so that edge stays put and close to the viewer while
+     the back edge shrinks and recedes toward the monitor. */
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) perspective(var(--keyboard-persp)) rotateX(var(--keyboard-tilt));
+}
+
+/* The wire. One quarter-ellipse arc from the keyboard's back edge up to
+   the monitor stand, whose base covers the far end. Height is derived so
+   the arc always lands on the desk's top edge. */
+.keyboard__cord {
+  position: absolute;
+  bottom: 100%;
+  left: calc(50% - var(--u) * 5.5);
+  width: calc(var(--u) * 11);
+  height: max(calc(var(--desk-h) - var(--u) * 17), calc(var(--u) * 5));
+  border-top: var(--wire) solid var(--c-cord);
+  border-left: var(--wire) solid var(--c-cord);
+  border-top-left-radius: 100% 100%;
+}
+
+.keyboard__deck {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.5);
+  height: 100%;
+}
+
+.keyboard__row {
+  display: flex;
+  flex: 1;
+  gap: calc(var(--u) * 0.45);
+}
+
+.keyboard__row--function {
+  flex: 0.75;
+}
+
+.key {
+  flex: var(--kw, 1) 1 0;
+  border-radius: calc(var(--u) * 0.3);
+  background-color: var(--c-plastic);
+  box-shadow: 0 max(1px, calc(var(--u) * 0.18)) 0 var(--c-plastic-shade);
+}
+
+.key--gap    { margin-left: calc(var(--u) * 1.1); }
+.key--wide   { --kw: 1.6; }
+.key--wider  { --kw: 2.1; }
+.key--enter  { --kw: 1.9; }
+.key--mod    { --kw: 1.3; }
+.key--space  { --kw: 6; }
+
+
+/* ── IDLE ─────────────────────────────────────────────────────
+   The only motion in the scene: the screen breathes, barely.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: no-preference) {
+  .monitor__screen {
+    animation: screen-idle 7s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes screen-idle {
+  from {
+    box-shadow:
+      inset 0 0 0 max(1px, calc(var(--u) * 0.2)) rgba(0, 0, 0, 0.35),
+      0 0 calc(var(--u) * 2) rgba(87, 200, 247, 0.12);
+  }
+  to {
+    box-shadow:
+      inset 0 0 0 max(1px, calc(var(--u) * 0.2)) rgba(0, 0, 0, 0.35),
+      0 0 calc(var(--u) * 5) var(--c-screen-glow);
+  }
+}
